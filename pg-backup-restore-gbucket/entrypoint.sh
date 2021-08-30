@@ -43,7 +43,6 @@ echo ${GCLOUD_PRIVATE_KEY_ID_B64}|base64 -d > ./key.json
 
 if [ "$1" = 'restore-and-cron' ]; then
     /usr/local/bin/restore.sh
-    # Normal startup run every 6 hours
     echo "${SCHEDULE} GS_BUCKET=${GS_BUCKET} POSTGRES_PORT=${POSTGRES_PORT} POSTGRES_USER=${POSTGRES_USER} POSTGRES_PASSWORD=${POSTGRES_PASSWORD} POSTGRES_HOST=${POSTGRES_HOST} POSTGRES_DATABASE=${POSTGRES_DATABASE} /usr/local/bin/backup.sh
     # extraline"> schedule.txt
     crontab schedule.txt
@@ -56,15 +55,9 @@ elif [ "$1" = 'backup-and-cron' ]; then
     crond -f
 
 elif [ "$1" = 'backup' ]; then
-    # Backup now
     /usr/local/bin/backup.sh
 
 elif [ "$1" = 'restore' ]; then
-    # Restore now
     /usr/local/bin/restore.sh
-
-else
-    # Run command as given by user
-    exec "$@"
 fi
 
