@@ -25,7 +25,7 @@ Will backup or restore or both on a cron job or single use. It upload or downloa
 ## How To Run
 
 ```
-docker run -e GCLOUD_PRIVATE_KEY_ID_B64=<Generated key> -e GCLOUD_ACCOUNT=<service-account>@<project-id>.iam.gserviceaccount.com -e GCLOUD_PROJECT=<gcloud_project> -e GS_BUCKET=<bucket_name> -e POSTGRES_DATABASE=db -e POSTGRES_HOST=db -e POSTGRES_USER=postgres -e SCHEDULE="* * * * *" -e POSTGRES_PASSWORD=<password>  pg-backup-restore-gbucket
+docker run -e GCLOUD_PRIVATE_KEY_ID_B64=<Generated key> -e GCLOUD_ACCOUNT=<service-account>@<project-id>.iam.gserviceaccount.com -e GCLOUD_PROJECT=<gcloud_project> -e GS_BUCKET=<bucket_name> -e POSTGRES_DATABASE=db -e POSTGRES_HOST=db -e POSTGRES_USER=postgres -e SCHEDULE="* * * * *" -e POSTGRES_PASSWORD=<password>  watchmecalculate/pg-backup-restore-gbucket
 
 ```
 
@@ -38,7 +38,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres
   db-backup:
-    image: pg-backup-restore-gbucket
+    image: watchmecalculate/pg-backup-restore-gbucket
     environment:
       - POSTGRES_DATABASE=test
       - POSTGRES_PASSWORD=password
